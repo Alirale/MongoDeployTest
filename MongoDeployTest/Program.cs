@@ -15,6 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<DbConfiguration>(configuration.GetSection("MongoDbConnection"));
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IMongoContext, MongoContext>();
 var dbConfiguration = builder.Configuration.GetSection("MongoDbConnection").Get<DbConfiguration>();
 builder.Services.AddScoped<ICustomerRepository>( _ => new CustomerRepository(dbConfiguration));
 

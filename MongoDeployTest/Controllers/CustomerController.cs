@@ -30,7 +30,6 @@ namespace MongoDeployTest.Controllers
             {
                 return NotFound();
             }
-
             return Ok(customer);
         }
 
@@ -41,7 +40,6 @@ namespace MongoDeployTest.Controllers
             {
                 return BadRequest();
             }
-
             await _customerService.CreateAsync(customer);
             return Ok(customer.Id);
         }
@@ -54,7 +52,6 @@ namespace MongoDeployTest.Controllers
             {
                 return NotFound();
             }
-
             await _customerService.UpdateAsync(id, customerIn).ConfigureAwait(false);
             return NoContent();
         }
@@ -67,7 +64,6 @@ namespace MongoDeployTest.Controllers
             {
                 return NotFound();
             }
-
             await _customerService.DeleteAsync(customer.Id).ConfigureAwait(false);
             return NoContent();
         }

@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Domain.Entities;
 
 namespace Infrastructure.Repository
 {

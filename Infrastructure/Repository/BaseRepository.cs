@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using MongoDB.Driver;
+using ServiceStack;
 
 namespace Infrastructure.Repository
 {

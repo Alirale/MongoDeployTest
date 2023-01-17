@@ -1,4 +1,6 @@
-﻿namespace Application.Interfaces
+﻿using MongoDB.Driver;
+
+namespace Application.Interfaces
 {
     public interface IMongoContext : IDisposable
     {

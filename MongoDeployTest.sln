@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDeployTest", "MongoDeployTest\MongoDeployTest.csproj", "{06C6DA3A-2FBC-4868-A981-FE4330CB2780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDeployTest", "MongoDeployTest\MongoDeployTest.csproj", "{06C6DA3A-2FBC-4868-A981-FE4330CB2780}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3101E5B6-A066-484A-BFFB-793A072435FE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{3101E5B6-A066-484A-BFFB-793A072435FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{DDF30B0F-C5C3-4738-96E9-087C0A45207A}"
 EndProject
@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Endpoint", "Endpoint", "{66FF22CF-E9AA-4E2D-9718-66D829FF9D5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{7D34E003-B3E3-436B-AC6F-B35EA9E457F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{7D34E003-B3E3-436B-AC6F-B35EA9E457F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{54F3BB24-5640-4E73-9662-7F14CECAEB30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Core\Domain.csproj", "{54F3BB24-5640-4E73-9662-7F14CECAEB30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F7CCA675-F6C2-4C4C-B400-CFAF0EC1E35C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F7CCA675-F6C2-4C4C-B400-CFAF0EC1E35C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

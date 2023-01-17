@@ -1,10 +1,12 @@
 using Application.Interfaces;
 using Application.Services;
-using Core.Entities;
+using Domain.Entities;
 using Infrastructure.Repository;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigurationManager configuration = builder.Configuration;
+var configuration = builder.Configuration;
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -13,7 +15,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<DbConfiguration>(configuration.GetSection("MongoDbConnection"));
 builder.Services.AddScoped<ICustomerService, CustomerService>();
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+var dbConfiguration = builder.Configuration.GetSection("MongoDbConnection").Get<DbConfiguration>();
+builder.Services.AddScoped<ICustomerRepository>( _ => new CustomerRepository(dbConfiguration));
+
+
+BsonClassMap.RegisterClassMap<Customer>(cm =>
+{
+    cm.AutoMap();
+    cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance); ;
+});
 
 
 var app = builder.Build();

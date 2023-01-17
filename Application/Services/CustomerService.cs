@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Core.Entities;
+using Domain.Entities;
 
 namespace Application.Services
 {
@@ -12,27 +12,28 @@ namespace Application.Services
             _customerRepository = customerRepository;
         }
 
-        public Task<List<Customer>> GetAllAsync()
+        public async Task<List<Customer>> GetAllAsync()
         {
-            return _customerRepository.GetAllAsync();
+            var res =await _customerRepository.GetAllAsync();
+            return res;
         }
 
-        public Task<Customer> GetByIdAsync(string id)
+        public Task<Customer> GetByIdAsync(Guid id)
         {
             return _customerRepository.GetByIdAsync(id);
         }
 
-        public Task<Customer> CreateAsync(Customer customer)
+        public async Task<Customer> CreateAsync(Customer customer)
         {
-            return _customerRepository.CreateAsync(customer);
+            return await _customerRepository.CreateAsync(customer);
         }
 
-        public Task UpdateAsync(string id, Customer customer)
+        public Task UpdateAsync(Guid id, Customer customer)
         {
             return _customerRepository.UpdateAsync(id, customer);
         }
 
-        public Task DeleteAsync(string id)
+        public Task DeleteAsync(Guid id)
         {
             return _customerRepository.DeleteAsync(id);
         }

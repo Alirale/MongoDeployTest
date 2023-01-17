@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Core.Entities;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MongoDeployTest.Controllers
@@ -18,11 +18,12 @@ namespace MongoDeployTest.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _customerService.GetAllAsync().ConfigureAwait(false));
+            var result = await _customerService.GetAllAsync();
+            return Ok(result);
         }
 
         [HttpGet("Id")]
-        public async Task<IActionResult> Get(string id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var customer = await _customerService.GetByIdAsync(id).ConfigureAwait(false);
             if (customer == null)
@@ -41,12 +42,12 @@ namespace MongoDeployTest.Controllers
                 return BadRequest();
             }
 
-            await _customerService.CreateAsync(customer).ConfigureAwait(false);
+            await _customerService.CreateAsync(customer);
             return Ok(customer.Id);
         }
 
         [HttpPut("Id")]
-        public async Task<IActionResult> Update(string id, Customer customerIn)
+        public async Task<IActionResult> Update(Guid id, Customer customerIn)
         {
             var customer = await _customerService.GetByIdAsync(id).ConfigureAwait(false);
             if (customer == null)
@@ -59,7 +60,7 @@ namespace MongoDeployTest.Controllers
         }
 
         [HttpDelete("Id")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var customer = await _customerService.GetByIdAsync(id).ConfigureAwait(false);
             if (customer == null)

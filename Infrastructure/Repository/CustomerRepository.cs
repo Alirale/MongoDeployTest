@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Core.Entities;
+using Domain.Entities;
 using MongoDB.Driver;
 
 namespace Infrastructure.Repository
@@ -14,24 +14,25 @@ namespace Infrastructure.Repository
             _collection = database.GetCollection<Customer>(settings.CollectionName);
         }
 
-        public Task<List<Customer>> GetAllAsync()
+        public async Task<List<Customer>> GetAllAsync()
         {
-            return _collection.Find(c => true).ToListAsync();
+            var list = await _collection.Find(x=>true).ToListAsync();
+            return list;
         }
-        public Task<Customer> GetByIdAsync(string id)
+        public Task<Customer> GetByIdAsync(Guid id)
         {
             return _collection.Find(c => c.Id == id).FirstOrDefaultAsync();
         }
         public async Task<Customer> CreateAsync(Customer customer)
         {
-            await _collection.InsertOneAsync(customer).ConfigureAwait(false);
+            await _collection.InsertOneAsync(customer);
             return customer;
         }
-        public Task UpdateAsync(string id, Customer customer)
+        public Task UpdateAsync(Guid id, Customer customer)
         {
             return _collection.ReplaceOneAsync(c => c.Id == id, customer);
         }
-        public Task DeleteAsync(string id)
+        public Task DeleteAsync(Guid id)
         {
             return _collection.DeleteOneAsync(c => c.Id == id);
         }

@@ -12,7 +12,6 @@ namespace Infrastructure.Repository
         protected BaseRepository(IMongoContext context)
         {
             Context = context;
-
             DbSet = Context.GetCollection<TEntity>(typeof(TEntity).Name);
         }
 

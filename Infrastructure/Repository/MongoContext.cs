@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Microsoft.Extensions.Configuration;
+using Domain.Entities;
 using MongoDB.Driver;
 
 namespace Infrastructure.Repository
@@ -10,13 +10,11 @@ namespace Infrastructure.Repository
         public IClientSessionHandle Session { get; set; }
         public MongoClient MongoClient { get; set; }
         private readonly List<Func<Task>> _commands;
-        private readonly IConfiguration _configuration;
+        private readonly DbConfiguration _settings;
 
-        public MongoContext(IConfiguration configuration)
+        public MongoContext(DbConfiguration settings)
         {
-            _configuration = configuration;
-
-            // Every command will be stored and it'll be processed at SaveChanges
+            _settings = settings;
             _commands = new List<Func<Task>>();
         }
 
@@ -44,11 +42,11 @@ namespace Infrastructure.Repository
             {
                 return;
             }
+            MongoClient = new MongoClient(_settings.ConnectionString);
 
-            // Configure mongo (You can inject the config, just to simplify)
-            MongoClient = new MongoClient(_configuration["MongoSettings:Connection"]);
+            Database = MongoClient.GetDatabase(_settings.DatabaseName);
 
-            Database = MongoClient.GetDatabase(_configuration["MongoSettings:DatabaseName"]);
+            ;
         }
 
         public IMongoCollection<T> GetCollection<T>(string name)
